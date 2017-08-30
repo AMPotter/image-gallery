@@ -3,7 +3,7 @@ import StevePics from './images/Stevens';
 import StevenList from './StevenList';
 import StevenThumbnail from './StevenThumbnail';
 import StevenGallery from './StevenGallery';
-import {Link, Switch, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import qs from 'query-string';
 
 class Images extends Component {
