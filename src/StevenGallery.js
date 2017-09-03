@@ -26,7 +26,7 @@ export default class Stevens extends Component {
         const {stevens} = this.props;
         return (
             <div>
-                <Steven steven={stevens[this.state.index]}/>
+                {this.props.stevens.length && <Steven steven={stevens[this.state.index]}/>}
                 <button onClick={() => this.changeImage(-1)}>Prev</button>
                 <button onClick={() => this.changeImage(1)}>Next</button>
             </div>
