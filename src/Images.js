@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-// import StevePics from './images/Stevens';
 import StevenList from './StevenList';
 import StevenThumbnail from './StevenThumbnail';
 import StevenGallery from './StevenGallery';
 import {Link} from 'react-router-dom';
 import qs from 'query-string';
-import {post} from './services';
+import {post, getAll, remove} from './services';
 
 const emptySteven = {title:'', description:'', url:''}
 
@@ -41,6 +40,27 @@ class Images extends Component {
         })
     }
 
+    removeSteven = id => {
+        remove(id)
+            .then(deleted => {
+                const stevens = this.state.stevens;
+                this.state.stevens.forEach((steven, index) => {
+                    if (steven._id === deleted._id) stevens.splice(index, 1)
+                })
+                this.setState({stevens})
+            })
+    }
+
+    componentDidMount() {
+        getAll()
+            .then(stevens => {
+                this.setState({
+                    stevens
+                })
+            })
+    }
+    
+
     render() {
 
         const view = qs.parse(this.props.location.search).view;
@@ -51,8 +71,8 @@ class Images extends Component {
         
         return (
             <div>
-                {view === 'detail' && <StevenList stevens={stevens}/> }
-                {view === 'thumbnail' && <StevenThumbnail stevens={stevens}/> }
+                {view === 'detail' && <StevenList stevens={stevens} onRemove={this.removeSteven}/> }
+                {view === 'thumbnail' && <StevenThumbnail stevens={stevens} onRemove={this.removeSteven}/> }
                 {view === 'gallery' && <StevenGallery stevens={stevens}/> }
                 <nav>
                     <Link to={`${url}?view=detail`}>Detail</Link>

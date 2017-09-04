@@ -30,13 +30,6 @@ export default class Stevens extends Component {
                 <button onClick={() => this.changeImage(-1)}>Prev</button>
                 <button onClick={() => this.changeImage(1)}>Next</button>
             </div>
-            // <ul>
-            //     {stevens && stevens.map(steven => (
-            //         <li key={steven.title}>
-            //             <Steven steven={steven}/>
-            //         </li>
-            //     ))}
-            // </ul>
         );
     }
 }
@@ -49,11 +42,10 @@ export function Steven({steven}) {
         }}>
             <img src={steven.url}
                 alt={steven.title}
-                style={{
-                    float: 'left',
-                    width: 100
-            }}/>
+            />
+            <br/>
             <span><a href={steven.url}>{steven.title}</a></span>
+            <br/>
             <span>{steven.description}</span>
         </div>
     );

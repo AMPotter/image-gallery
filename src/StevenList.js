@@ -7,8 +7,9 @@ export default class Stevens extends Component {
         return (
             <ul>
                 {stevens && stevens.map(steven => (
-                    <li key={steven.title}>
+                    <li key={steven._id}>
                         <Steven steven={steven}/>
+                        <button onClick={() => this.props.onRemove(steven._id)}>Delete</button>
                     </li>
                 ))}
             </ul>
