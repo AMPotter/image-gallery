@@ -6,10 +6,10 @@ export default class Stevens extends Component {
         const {stevens} = this.props;
         return (
             <ul>
-                <li>HEY LOOK</li>
                 {stevens && stevens.map(steven => (
-                    <li key={steven.title}>
+                    <li key={steven._id}>
                         <Steven steven={steven}/>
+                        <button onClick={() => this.props.onRemove(steven._id)}>Delete</button>
                     </li>
                 ))}
             </ul>
